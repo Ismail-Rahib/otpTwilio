@@ -18,23 +18,29 @@ Ensure you have the following installed:
 
 ## ⚡ Setup Instructions
 
-### 1️⃣ Clone the Repository
+### 1️⃣ Create a Twilio Account & Get Credentials 🔑
+1. Sign up at [Twilio](https://www.twilio.com/).
+2. Verify your phone number 📞.
+3. Get a free Twilio phone number.
+4. Copy your **Twilio SID**, **Auth Token**, and **Phone Number**.
+
+### 2️⃣ Clone the Repository
 ```sh
 git clone https://github.com/Ismail-Rahib/otpTwilio.git
 cd otpTwilio
 ```
 
-### 2️⃣ Install Dependencies
+### 3️⃣ Install Dependencies
 ```sh
 composer install
 ```
 
-### 3️⃣ Install Twilio SDK 📦
+### 4️⃣ Install Twilio SDK 📦
 ```sh
 composer require twilio/sdk
 ```
 
-### 4️⃣ Configure `.env` File 🛠️
+### 5️⃣ Configure `.env` File 🛠️
 Create a `.env` file in the root directory and add your Twilio credentials:
 ```ini
 TWILIO_SID="your_twilio_sid"
@@ -43,7 +49,7 @@ TWILIO_PHONE_NUMBER="your_twilio_phone_number"
 ```
 Ensure your `.env` file is **not committed** to Git by adding it to `.gitignore`.
 
-### 5️⃣ Start the Development Server ▶️
+### 6️⃣ Start the Development Server ▶️
 ```sh
 php spark serve
 ```
