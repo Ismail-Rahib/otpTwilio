@@ -1,35 +1,40 @@
-# OTP Verification with Twilio in CodeIgniter 4
+# 🔐 OTP Verification with Twilio in CodeIgniter 4 🚀
 
 This project implements OTP (One-Time Password) verification using Twilio in CodeIgniter 4 with AJAX. Users receive an OTP via SMS and must verify it to access a dashboard.
 
-## Features
-- Send OTP via Twilio
-- Verify OTP using session handling
-- Redirect to a dashboard after successful verification
-- Logout functionality
+## ✨ Features
+- 📲 Send OTP via Twilio
+- 🔑 Verify OTP using session handling
+- 🎯 Redirect to a dashboard after successful verification
+- 🚪 Logout functionality
 
-## Prerequisites
+## 📌 Prerequisites
 Ensure you have the following installed:
-- PHP 7.4+
-- Composer
-- CodeIgniter 4
-- Twilio Account (for sending SMS)
-- XAMPP or any local server environment
+- ✅ PHP 7.4+
+- ✅ Composer
+- ✅ CodeIgniter 4
+- ✅ Twilio Account (for sending SMS)
+- ✅ XAMPP or any local server environment
 
-## Setup Instructions
+## ⚡ Setup Instructions
 
-### 1. Clone the Repository
+### 1️⃣ Clone the Repository
 ```sh
 git clone https://github.com/Ismail-Rahib/otpTwilio.git
 cd otpTwilio
 ```
 
-### 2. Install Dependencies
+### 2️⃣ Install Dependencies
 ```sh
 composer install
 ```
 
-### 3. Configure `.env` File
+### 3️⃣ Install Twilio SDK 📦
+```sh
+composer require twilio/sdk
+```
+
+### 4️⃣ Configure `.env` File 🛠️
 Create a `.env` file in the root directory and add your Twilio credentials:
 ```ini
 TWILIO_SID="your_twilio_sid"
@@ -38,13 +43,13 @@ TWILIO_PHONE_NUMBER="your_twilio_phone_number"
 ```
 Ensure your `.env` file is **not committed** to Git by adding it to `.gitignore`.
 
-### 4. Start the Development Server
+### 5️⃣ Start the Development Server ▶️
 ```sh
 php spark serve
 ```
 Your application will run on `http://localhost:8080`.
 
-## Project Structure
+## 📂 Project Structure
 ```
 app/
 ├── Controllers/
@@ -62,9 +67,9 @@ public/
 │   ├── js/jquery-3.6.0.min.js
 ```
 
-## API Endpoints
+## 🔗 API Endpoints
 
-### 1. Send OTP
+### 1️⃣ Send OTP
 **URL:** `/send-otp`
 **Method:** `POST`
 **Request Body:** `{ "phone": "+1234567890" }`
@@ -76,7 +81,7 @@ public/
 }
 ```
 
-### 2. Verify OTP
+### 2️⃣ Verify OTP
 **URL:** `/verify-otp`
 **Method:** `POST`
 **Request Body:** `{ "otp": "123456" }`
@@ -88,12 +93,12 @@ public/
 }
 ```
 
-## Usage
+## 🛠️ Usage
 1. Open `http://localhost:8080` in your browser.
-2. Enter your phone number and click "Send OTP".
-3. Enter the received OTP and verify.
-4. If successful, you are redirected to the dashboard.
-5. Click "Logout" to end the session.
+2. Enter your phone number and click "Send OTP" 📩.
+3. Enter the received OTP and verify 🔑.
+4. If successful, you are redirected to the dashboard 🏆.
+5. Click "Logout" to end the session 🚪.
 
-## License
+## 📜 License
 This project is open-source under the [MIT License](LICENSE).
