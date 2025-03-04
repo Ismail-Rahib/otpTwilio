@@ -1,60 +1,99 @@
-# CodeIgniter 4 Framework
+# OTP Verification with Twilio in CodeIgniter 4
 
-## What is CodeIgniter?
+This project implements OTP (One-Time Password) verification using Twilio in CodeIgniter 4 with AJAX. Users receive an OTP via SMS and must verify it to access a dashboard.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Features
+- Send OTP via Twilio
+- Verify OTP using session handling
+- Redirect to a dashboard after successful verification
+- Logout functionality
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Prerequisites
+Ensure you have the following installed:
+- PHP 7.4+
+- Composer
+- CodeIgniter 4
+- Twilio Account (for sending SMS)
+- XAMPP or any local server environment
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Setup Instructions
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### 1. Clone the Repository
+```sh
+git clone https://github.com/Ismail-Rahib/otpTwilio.git
+cd otpTwilio
+```
 
-## Important Change with index.php
+### 2. Install Dependencies
+```sh
+composer install
+```
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### 3. Configure `.env` File
+Create a `.env` file in the root directory and add your Twilio credentials:
+```ini
+TWILIO_SID="your_twilio_sid"
+TWILIO_AUTH_TOKEN="your_twilio_auth_token"
+TWILIO_PHONE_NUMBER="your_twilio_phone_number"
+```
+Ensure your `.env` file is **not committed** to Git by adding it to `.gitignore`.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+### 4. Start the Development Server
+```sh
+php spark serve
+```
+Your application will run on `http://localhost:8080`.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Project Structure
+```
+app/
+├── Controllers/
+│   ├── OtpController.php  # Handles OTP sending & verification
+│   ├── DashboardController.php  # Handles dashboard access & logout
+├── Views/
+│   ├── otp_view.php  # OTP verification page
+│   ├── dashboard.php  # Dashboard page
+├── Config/
+│   ├── Routes.php  # Define application routes
+public/
+├── assets/
+│   ├── css/bootstrap.min.css
+│   ├── js/bootstrap.bundle.min.js
+│   ├── js/jquery-3.6.0.min.js
+```
 
-## Repository Management
+## API Endpoints
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+### 1. Send OTP
+**URL:** `/send-otp`
+**Method:** `POST`
+**Request Body:** `{ "phone": "+1234567890" }`
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "OTP sent successfully!"
+}
+```
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### 2. Verify OTP
+**URL:** `/verify-otp`
+**Method:** `POST`
+**Request Body:** `{ "otp": "123456" }`
+**Response:**
+```json
+{
+  "status": "success",
+  "message": "OTP verified successfully!"
+}
+```
 
-## Contributing
+## Usage
+1. Open `http://localhost:8080` in your browser.
+2. Enter your phone number and click "Send OTP".
+3. Enter the received OTP and verify.
+4. If successful, you are redirected to the dashboard.
+5. Click "Logout" to end the session.
 
-We welcome contributions from the community.
-
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
-
-## Server Requirements
-
-PHP version 8.1 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## License
+This project is open-source under the [MIT License](LICENSE).
